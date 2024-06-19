@@ -1,4 +1,4 @@
-export default function UserScreen(){
+export default function DriverScreen(){
     return(
         <h1>Driver</h1>
     )

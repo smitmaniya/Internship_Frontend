@@ -1,0 +1,81 @@
+
+.app-container {
+    display: flex;
+}
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #01003D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-height: 60px;
+}
+
+.menu {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.link-button i {
+    margin-right: 10px;
+}
+
+.link-button:hover {
+    background-color: white;
+    color: #01003D;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+}
+
+.bottom-tiles {
+    padding: 0 10px;
+}
+
+.content {
+    margin-left: 200px; /* Adjust based on the sidebar width */
+    padding: 20px;
+    height: 100vh;
+    width: calc(100% - 200px); 
+    background-color: #EEF9FF;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+
+    /* Adjust based on the sidebar width */
+}

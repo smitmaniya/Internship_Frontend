@@ -1,0 +1,105 @@
+.users-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #EEE;
+}
+
+.user-item span {
+    flex: 1;
+}
+
+.user-id {
+    flex: 0.5;
+}
+
+.user-name {
+    flex: 2.5;
+}
+
+.user-type, .user-rating, .user-joined, .user-last-login, .user-status {
+    flex: 1.5;
+}
+
+.user-id-header {
+    flex: 0.5;
+    color: rgba(119, 110, 132, 1);
+}
+
+.user-type {
+    flex: 2;
+}
+
+.user-name-header {
+    flex: 2.5;
+    color: rgba(119, 110, 132, 1);
+}
+
+.user-rating-header, .user-joined-header, .user-last-login-header, .user-status-header {
+    flex: 1.5;
+    color: rgba(119, 110, 132, 1);
+}
+
+.user-type-header {
+    flex: 2;
+    color: rgba(119, 110, 132, 1);
+}
+
+.listcontainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-link-style {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.user-link-style:hover {
+    text-decoration: none;
+    color: rgba(2, 0, 102, 1);
+    font-weight: 600;
+}
+
+.give-review-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: rgba(2, 0, 102, 1);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.status-Completed {
+    color: green;
+}
+
+.status-active {
+    color: red;
+}
+
+.status-pending {
+    color: orange;
+}

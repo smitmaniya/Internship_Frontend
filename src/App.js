@@ -1,20 +1,19 @@
 
 import Login from './pages/login';
-import Registration from './pages/registration';
+import SignUp from './pages/signUp';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import ServiceProvider from './pages/service_provider/serviceProfile';
-import UserScreen from './pages/userScreen.jsx/userScreen';
+import DriverScreen from './pages/driver';
+import UserScreen from './pages/userScreen';
+import ServiceProvider from './pages/serviceProvider';
 function App() {
   return (
     <Router><Routes>
       <Route path="/" element={<Login />}></Route>
       <Route path="/login" element={<Login />}></Route>
-      <Route path="/registration" element={<Registration />}></Route>
+      <Route path="/signUp" element={<SignUp />}></Route>
       <Route path="/serviceProvider" element={<ServiceProvider />}></Route>
       <Route path="/userScreen" element={<UserScreen />}></Route>
-      <Route path="/driver" element={<Driver />}></Route>
-
-     
+      <Route path="/driver" element={<DriverScreen />}></Route>
     </Routes></Router>
   );
 }

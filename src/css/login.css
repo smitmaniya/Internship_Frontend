@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-color: #EEF9FF;
+}
+
+.login-form {
+    padding: 40px;
+    width: 50%;
+}
+
+.inside-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #EEF9FF;
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+input[type="email"]{
+    width: calc(100% - 22px); /* Adjust width to match padding and border */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 17px;
+}
+input[type="password"]{
+    width: calc(100% - 22px); /* Adjust width to match padding and border */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 17px;
+}
+button {
+    width: calc(100% - 22px); /* Adjust width to match padding and border */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+
+.forgot-password {
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+
+button {
+
+    background-color: #020066;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+select {
+    width: calc(100% - 22px); /* Adjust width to match padding and border */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 17px; /* Smooth transition for border color */
+  }
+.signup {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.signup a {
+    color: #020066;
+    text-decoration: none;
+}
+
+.image {
+    width: 50%;
+    background: url("D:/internship-project/src/assets/loginImage.png") no-repeat center center;
+    background-size: cover;
+}
