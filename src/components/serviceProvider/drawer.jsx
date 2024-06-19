@@ -5,7 +5,7 @@ import logo from "D:/internship-project/src/assets/logoapp.png";
 export default function Drawer({ setActiveTab, tiles, title }) {
   return (
     <div className="sidebar">
-      <div className="logo">
+      <div className="logo2">
         <img src={logo} alt="Logo" />
       </div>
       <div className="menu">
