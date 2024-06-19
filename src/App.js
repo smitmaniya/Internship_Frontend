@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
 
+import Login from './pages/login';
+import Registration from './pages/registration';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import ServiceProvider from './pages/service_provider/serviceProfile';
+import UserScreen from './pages/userScreen.jsx/userScreen';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router><Routes>
+      <Route path="/" element={<Login />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/registration" element={<Registration />}></Route>
+      <Route path="/serviceProvider" element={<ServiceProvider />}></Route>
+      <Route path="/userScreen" element={<UserScreen />}></Route>
+      <Route path="/driver" element={<Driver />}></Route>
+
+     
+    </Routes></Router>
   );
 }
 
 export default App;
+
