@@ -1,0 +1,238 @@
+.service-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allows wrapping to next line if there's not enough space */
+    justify-content: flex-start; /* Adjust spacing between cards as needed */
+}
+
+.service-card {
+    display: flex;
+    flex-direction: row; /* Align content horizontally */
+    align-items: center; /* Center content vertically */
+    position: relative;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
+    text-align: left; /* Align text content to the left */
+}
+
+.service-card img {
+    height: 50%;
+    width: 50%;
+    object-fit: cover; /* Ensure the image covers the space without distortion */
+}
+
+.details {
+    display: flex;
+    flex-direction: column; /* Align content vertically within details */
+    justify-content: center; /* Center content vertically within details */
+    align-items: flex-start; /* Align content to the start (left) within details */
+    padding: 20px; /* Add some padding for better spacing */
+    width: 50%; /* Ensure details take up half the card width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    color: black;
+}
+
+.details h2, .details p, .details h3 {
+    margin: 5px 0; /* Add some margin for better spacing between elements */
+}
+
+.container-info {
+    display: flex;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+}
+
+.section-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1; /* This will make each section take equal space */
+}
+
+.contact {
+    background-color: #f9f9f9;
+}
+
+.operational {
+    background-color: #01003D;
+    color: #ffffff;
+}
+
+.info-h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.info-a {
+    color: inherit;
+    text-decoration: none;
+}
+.reviews-container {
+    padding: 20px;
+    background-color: #D9D9D9;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.user-detail{
+    display: flex;
+    flex-direction: row;
+}
+.reviews-container h2 {
+text-align: left;
+    margin-bottom: 20px;
+}
+
+.reviews-wrapper {
+    padding-bottom: 10px;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+   
+}
+
+
+.reviews-wrapper::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.review-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 450px;
+    margin-right: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    flex-shrink: 0;
+
+}
+
+.review-header {
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+
+    justify-content: space-between;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.review-date {
+    margin-bottom: 10px;
+    color: #888;
+}
+
+.review-text {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.review-rating {
+    color: #ff9900;
+}
+
+.rating-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rating-summary h1 {
+    margin: 0;
+    font-size: 48px;
+    color: #333;
+}
+
+.summary-rating {
+    display: flex;
+    align-items: center;
+    color: #ff9900;
+}
+
+.summary-rating span {
+    margin-left: 10px;
+    color: #888;
+}
+/***************/
+
+.container3 {
+    position: relative;
+    display: flex;
+    height: 400px;
+    background-color: white;
+    border: 0.1px solid black;
+    overflow: hidden;
+}
+
+.container3-content{
+    margin:2% 3%;
+    margin-bottom: 5%;
+    border: 0.1px solid black;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Centers text vertically */
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #01003D;
+
+}
+
+.container3 img{
+    position: absolute;
+    right: 2%;
+    height: 225px;
+    width: 350px;
+}
+
+
+.service-information{
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-items: flex-end;
+    height: 80%;
+}
+
+.service-information div{
+    font-size: 20px;
+    margin:20px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 10px 20px; /* Adds padding inside the div */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

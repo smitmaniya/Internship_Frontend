@@ -1,0 +1,90 @@
+
+main {
+    flex: 1;
+}
+
+footer {
+  background-color: #01003D;
+    color: #FFFFFF;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    padding-bottom: 40px; /* Ensure the footer itself is the positioning context */
+}
+
+.footer-container {
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative; /* Ensure the footer-container is the positioning context for its children */
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Position the footer-logo absolutely */
+    top: 10px; /* Adjust the top position as needed */
+    left: 50px; /* Adjust the left position as needed */
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.footer-logo h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.footer-sections {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-left: 60px; /* Adjust the margin to account for the absolute position of the logo */
+}
+
+.footer-column h3 {
+    margin-top: 0;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 5px;
+}
+
+.footer-column a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact {
+    width: 20%;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+

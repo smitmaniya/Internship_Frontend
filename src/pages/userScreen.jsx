@@ -1,5 +1,7 @@
+import HomePage from "../components/user/homePage";
+
 export default function UserScreen(){
     return(
-        <h1>Driver</h1>
+        <HomePage/>
     )
 }

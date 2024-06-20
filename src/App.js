@@ -5,6 +5,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import DriverScreen from './pages/driver';
 import UserScreen from './pages/userScreen';
 import ServiceProvider from './pages/serviceProvider';
+import ServiceDetails from './components/user/serviceDetailUser';
 function App() {
   return (
     <Router><Routes>
@@ -14,6 +15,8 @@ function App() {
       <Route path="/serviceProvider" element={<ServiceProvider />}></Route>
       <Route path="/userScreen" element={<UserScreen />}></Route>
       <Route path="/driver" element={<DriverScreen />}></Route>
+      <Route path="/serviceDetailUser" element={<ServiceDetails />}></Route>
+
     </Routes></Router>
   );
 }

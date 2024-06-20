@@ -1,0 +1,50 @@
+.header2 {
+    background-color: #01003D;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: -10px;
+    
+}
+
+.logo2 {
+    align-items: center;
+    
+}
+
+.logo2 img {
+    height: 50px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+}
+
+.user-section img {
+    height: 25px;
+    margin-right: 10px;
+}
+
+.user-section span {
+    margin-right: 15px;
+}

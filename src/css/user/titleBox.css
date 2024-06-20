@@ -1,0 +1,104 @@
+
+
+.container2 {
+    position: relative;
+    display: flex;
+    height: 400px;
+    background-color: white;
+    border: 0.1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.left-section, .right-section {
+    padding: 20px;
+    width: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.left-section {
+    padding-top: 7%;
+    padding-left: 5%;
+    text-align: left;
+}
+
+.left-section h1 {
+    font-size: 36px;
+    color: #ff8c00;
+    margin-bottom: 10px;
+}
+
+.left-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.search-bar2 {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar2 input {
+    width: 35%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-bar2 button {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ff8c00;
+    border-radius: 0 5px 5px 0;
+    background-color: #ff8c00;
+    color: white;
+    cursor: pointer;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container2 {
+    margin-bottom: 20px;
+}
+
+.image-container2 img {
+    position: absolute;
+    bottom: 0;
+    width: 600px;
+    height: 350px;
+    right: 30%;
+    border-radius: 10px;
+}
+
+.image-container3{
+    position: absolute;
+    
+    width: 30%;
+    height: 90%;
+    right: 0px;
+    object-fit: cover; /* Adjust this to 'contain' if you want the image to be fully visible */
+
+}
+
+/* .notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
