@@ -11,10 +11,14 @@ export default function ServiceDetails(){
         <>
         <UserHeader/>
         <ServiceProviderUserBox/>
+        <div style={{marginLeft:"20px"}}>
         <ServiceView/>
-        <CustomerReviews/>
-        <br/>
         <ServiceInformation/>
+        <br/>
+        <br/>
+        </div>
+        <br/>
+        <CustomerReviews/>
         <Footer/>
         </>
 

@@ -90,7 +90,13 @@
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background: white;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
 }
+.user-dialog::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
 
 .status-Completed {
     color: green;
@@ -102,4 +108,68 @@
 
 .status-pending {
     color: orange;
+
 }
+    .receipt {
+        background-color: #fff;
+        padding: 20px;
+        width: 800px; /* Adjusted width */
+      }
+      
+      .header h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      
+      .user-dialog  th, td {
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+      }
+     .user-dialog td {
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .user-dialog     th {
+        background-color: #f2f2f2;
+      }
+      
+      .service-cell {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      
+      .service-image {
+        width: 120px;
+        height: 100px;
+
+      }
+      
+      .service-details {
+        text-align: left;
+      }
+      
+      .status-completed {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      
+      .summary {
+        text-align: right;
+      }
+      
+    
+  .summary p, .summary h2 {
+    margin: 5px 0;
+  }
