@@ -3,6 +3,8 @@ import { useState } from 'react';
 import "D:/internship-project/src/css/user/serviceView.css";
 import ServiceViewImage from "D:/internship-project/src/assets/service.png";
 import Plus from "D:/internship-project/src/assets/plus.png";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ServiceView() {
     const [quantities, setQuantities] = useState(Array(7).fill(1)); // Assuming 7 deals
@@ -23,6 +25,11 @@ export default function ServiceView() {
 
 
     ];
+    const navigate = useNavigate();
+const handleSubmit = (event) => {
+    event.preventDefault();
+  navigate('/orderPlace')
+};
 
     return (
         <div >
@@ -38,7 +45,7 @@ export default function ServiceView() {
                         <img className='service-card-img' src={deal.imgSrc} alt={`Laundry Service ${deal.id}`} />
                         <button className='service-card-plus' onClick={() => handlePlusClick(index)}>
                             {quantities ===! 0 && <h1>{quantities}</h1>}
-                            <img className='service-card-plus' src={Plus} alt={`Laundry Service ${deal.id}`} />
+                            <img className='service-card-plus' src={Plus} alt={`Laundry Service ${deal.id}`} onClick={handleSubmit} />
                         </button>
                     </div>
                 ))}

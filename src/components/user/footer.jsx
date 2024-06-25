@@ -9,8 +9,9 @@ export default function Footer() {
                 <div className="footer-logo">
                     <img src={logo} alt="Sparkle Drop Logo" />
                     <h2>Sparkle Drop</h2>
-                 
+                
                 </div>
+               <br/>
                 <div className="footer-sections">
                     <div className="footer-column">
                         <h3>Company</h3>
@@ -42,8 +43,8 @@ export default function Footer() {
                             <li><a href="/">FAQ</a></li>
                         </ul>
                     </div>
-                </div>
-                <div className="footer-contact">
+                    <div className="footer-contact">
+                    <h3>Address</h3>
                     <p>Windsor<br />1499, Pope st<br />LaSalle, ON, Canada<br />N9J 3R8</p>
                     <br/>
                     <div className="social-icons">
@@ -55,6 +56,8 @@ export default function Footer() {
                         <a href="/"><i className="fab fa-youtube"></i></a>
                     </div>
                 </div>
+                </div>
+               
             </div>
         </footer>
     );

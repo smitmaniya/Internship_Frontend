@@ -60,28 +60,43 @@
 
 .container-info {
     display: flex;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin: 20px;
+}
+.map {
+        width: 50%;
+        border-radius: 8px;
+        overflow: hidden;
+        
+    }
+
+.map img{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
 }
 
 .section-info {
     padding: 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1; /* This will make each section take equal space */
-}
-
-.contact {
-    background-color: #f9f9f9;
-}
-
-.operational {
+    flex-direction: row;
+    justify-content: space-evenly;
     background-color: #01003D;
+    border-radius: 8px;
     color: #ffffff;
+    flex: 1; 
+}
+
+
+.contact-data{
+    flex-direction: column;
+    
+}
+.operational{
+    flex-direction: column;
+    margin-left: 10px;
+    width: 100%;
 }
 
 .info-h2 {

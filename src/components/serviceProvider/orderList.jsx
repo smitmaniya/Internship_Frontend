@@ -112,7 +112,7 @@ export default function NewOrderList({ users }) {
         <p>Estimated Tax: <span>$45.99</span></p>
         <h2>Total (CAD): <span>$415.94</span></h2>
       </div>
-                    <button onClick={closeDialog}>Close</button>
+       <button onClick={closeDialog}>Close</button>
     </div>
                 </dialog>
             )}
