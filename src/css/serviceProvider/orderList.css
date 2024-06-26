@@ -26,7 +26,20 @@
 .user-type, .user-rating, .user-joined, .user-last-login, .user-status {
     flex: 1.5;
 }
+.button-add-close {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 200px; /* Adjust max-width as needed */
+  margin: auto;
+}
 
+.button-add-close button {
+  flex: 1;
+  margin: 0 5px; /* Adjust margin as needed */
+  padding: 10px; /* Adjust padding as needed */
+}
 .user-id-header {
     flex: 0.5;
     color: rgba(119, 110, 132, 1);
@@ -79,7 +92,14 @@
     border-radius: 4px;
     cursor: pointer;
 }
-
+.Accept{
+  background-color: green;
+  color: white;
+}
+.close{
+  background-color: red;
+  color: white;
+}
 .user-dialog {
     position: fixed;
     top: 50%;
@@ -110,66 +130,71 @@
     color: orange;
 
 }
-    .receipt {
-        background-color: #fff;
-        padding: 20px;
-        width: 800px; /* Adjusted width */
-      }
-      
-      .header h1 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
-      
-      .user-dialog  th, td {
-        padding: 8px;
-        text-align: center;
-        vertical-align: middle;
-      }
-     .user-dialog td {
-        padding: 8px;
-        text-align: center;
-        vertical-align: middle;
-      }
-      .user-dialog     th {
-        background-color: #f2f2f2;
-      }
-      
-      .service-cell {
-        display: flex;
-        align-items: center;
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-      
-      .service-image {
-        width: 120px;
-        height: 100px;
+.receipt {
+    background-color: #fff;
+    padding: 20px;
+    width: 800px; /* Adjusted width */
+}
+.receipt2 {
+  background-color: #fff;
+  padding: 20px;
+  width: 400px; /* Adjusted width */
+}
 
-      }
-      
-      .service-details {
-        text-align: left;
-      }
-      
-      .status-completed {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 5px;
-        border-radius: 5px;
-      }
-      
-      .summary {
-        text-align: right;
-      }
-      
-    
-  .summary p, .summary h2 {
-    margin: 5px 0;
-  }
+.header h1 {
+  text-align: start;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.user-dialog  th, td {
+  padding: 8px;
+  text-align: start;
+  vertical-align: middle;
+}
+.user-dialog td {
+  padding: 8px;
+  text-align: start;
+  vertical-align: middle;
+}
+.user-dialog     th {
+  background-color: #f2f2f2;
+}
+
+.service-cell {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.service-image {
+  width: 120px;
+  height: 100px;
+
+}
+
+.service-details {
+  text-align: left;
+}
+
+.status-completed {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.summary {
+  text-align: right;
+}
+
+
+.summary p, .summary h2 {
+  margin: 5px 0;
+}

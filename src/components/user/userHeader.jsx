@@ -22,9 +22,10 @@ export default function UserHeader(){
             <a href="/">FAQs</a>
         </nav>
         <div class="user-section">
-            <img src={logo} alt="User Icon"/>
+        <i class="fa fa-user" aria-hidden="true"></i>
             <span>username</span>
-            <img src={logo} alt="Cart Icon" onClick={handleSubmit}/>
+            <i class="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
+            
         </div>
     </header>
     )
