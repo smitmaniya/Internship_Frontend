@@ -87,7 +87,7 @@ export default function Login() {
                         <a href="/" className="forgot-password">Forgot password?</a>
                         <br/><br/><br/>
                         <button type="submit">Login</button>
-                        <p className="signup">New to Sparkle Drop? <a href="/signUp">Sign up</a></p>
+                        <p className="signup">New to Sparkle Drop? <a href="/#/userScreen">Sign up</a></p>
                     </form>
                 </div>
             </div>

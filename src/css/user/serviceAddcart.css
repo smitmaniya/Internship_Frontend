@@ -1,0 +1,110 @@
+.body-add {
+    font-family: Arial, sans-serif;
+    display: flex;
+    
+    margin: 0;
+    box-shadow: none;
+}
+
+.dialog-overlay-add {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-box-add {
+    padding: 20px;
+    border-radius: 5px;
+    width: 70%;
+    height: 55%;
+    border:none;
+    box-shadow: none;
+    text-align: center;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.container-add {
+    display: flex;
+    flex-direction: row; /* Ensure items are aligned in a row */
+    align-items: flex-start; /* Align items at the start */
+    background-color: #ffffff;
+    overflow: hidden;
+    text-align: left;
+}
+
+.product-image-add {
+    flex: 1;
+    padding: 20px;
+}
+
+.product-image-add img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.product-details-add {
+    align-items: flex-start;
+    flex: 2;
+    padding: 20px;
+}
+
+.product-details-add h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.product-details-add .price {
+    color: #888;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product-details-add .description-add {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.special-instruction-add {
+    margin: 10px 0;
+}
+
+.special-instruction-add label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.special-instruction-add input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
+.add-to-order-add {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #00008b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-to-order:hover {
+    background-color: #00006a;
+}
