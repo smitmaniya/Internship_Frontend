@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Drawer from "../components/serviceProvider/drawer";
-import Header from "../components/serviceProvider/header";
-import DashBoardDriver from "../css/driver/dashboardDriver";
-import OrderCompleted from "../css/driver/orderHistory";
+import DashBoardDriver from "../components/driver/dashboardDriver";
+import OrderCompleted from "../components/driver/orderHistory";
+import BankAccount from "../components/driver/bankDetail";
+import ProfileDriver from "../components/driver/profile";
 
 export default function DriverScreen(){
     const [activeTab, setActiveTab] = useState('Dashboard');
@@ -10,6 +11,7 @@ export default function DriverScreen(){
       { name: 'Dashboard', icon: 'fa-tachometer-alt' },
       { name: 'Order History', icon: 'fa-shopping-cart' },
       { name: 'Profile', icon: 'fa fa-user' },
+      { name: 'Bank Detail', icon: 'fa fa-user' }
 
     ];
     const Orders = [
@@ -24,10 +26,11 @@ export default function DriverScreen(){
       <Drawer setActiveTab={setActiveTab} tiles={tiles} title="Admin Dashboard" />
        
         <div className="content">
-        <Header/>
         <br/>
         {activeTab === 'Dashboard' && <DashBoardDriver />}
         {activeTab === 'Order History' && <OrderCompleted Orders={Orders}/>}
+        {activeTab === 'Bank Detail' && <BankAccount />}
+        {activeTab === 'Profile' && <ProfileDriver />}
 
         {activeTab === 'Settings' && <div>Settings Content</div>}
         {activeTab === 'Logout' && <div>Logout Content</div>}

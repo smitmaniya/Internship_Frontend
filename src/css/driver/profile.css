@@ -1,0 +1,32 @@
+.main-profile-container {
+    display: flex;
+    flex-direction: row;
+    width: 60%; /* Adjusted to use full container width */
+    flex-wrap: wrap;
+}
+
+.main-profile-container > div {
+    flex: 1; /* This makes each div take equal space */
+    padding: 10px; /* Optional: adds some space inside each div */
+}
+
+.image-preview20 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; 
+    border: 3px solid black;/* Ensures the image covers the area without being distorted */
+}
+input{
+    background-color: white;
+}
+
+
+
+
+.center-profile-driver{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,7 +1,8 @@
+import Header from "../serviceProvider/header";
 import "D:/internship-project/src/css/serviceProvider/orderList.css";
 import React, { useState } from 'react';
 
-export default function NewOrder({Orders}) {
+export default function OrderCompleted({Orders}) {
     
     const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -23,7 +24,9 @@ export default function NewOrder({Orders}) {
 
     return (
         <>
-        <h2>New Order</h2>
+        <Header/>
+        <br/>
+        <h1>Order History</h1>
         <br/>
         <div className="listcontainer">
             <ul className="users-list">
@@ -32,7 +35,9 @@ export default function NewOrder({Orders}) {
                     <span className="user-name-header">Date</span>
                     <span className="user-joined-header">Total Items</span>
                     <span className="user-id-header">Price</span>
-                    <span className="user-id-header">Distance</span>
+                    <span className="user-id-header">Accept Time</span>
+
+                    <span className="user-id-header">Completed time</span>
 
                     <span className="user-status-header">Status</span>
                 </li>
@@ -42,8 +47,10 @@ export default function NewOrder({Orders}) {
                             <span className="user-id">{order.Name}</span>
                             <span className="user-name">{order.date}</span>
                             <span className="user-joined">{order.Total_item}</span>
-                            <span className="user-id">{order.price}</span>
-                            <span className="user-id">{order.Total_item}</span>
+                            <span className="user-status">{order.price}</span>
+                            <span className="user-status">{order.Accept_time}</span>
+
+                            <span className="user-status">{order.Completed_time}</span>
 
                             <span className="user-id" style={{color:"green"}}>{order.status}</span>
                         </li>
@@ -52,7 +59,7 @@ export default function NewOrder({Orders}) {
             </ul>
             {selectedOrder && (
                 <dialog id="order-dialog" className="user-dialog">
-                    <div className="receipt2">
+                    <div className="receipt">
                         <div className="header">
                             <h1>Address Detail</h1>
                         </div>
@@ -70,12 +77,8 @@ export default function NewOrder({Orders}) {
                                 </tr>
                             </tbody>
                         </table>
-                      <div className="button-add-close">
-
-                        <button className="close" onClick={closeDialog}>Close</button>
-                        <button className="Accept">Accept</button>
-
-                      </div>
+                      
+                        <button onClick={closeDialog}>Close</button>
                     </div>
                 </dialog>
             )}
