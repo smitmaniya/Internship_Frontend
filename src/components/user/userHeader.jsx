@@ -8,6 +8,10 @@ export default function UserHeader(){
         event.preventDefault();
         navigate(`/orderPlace`);
     };
+    const handleprofile = (event) => {
+        event.preventDefault();
+        navigate(`/profileUser`);
+    };
 
     return (
         <header class="header2">
@@ -22,9 +26,9 @@ export default function UserHeader(){
             <a href="/">FAQs</a>
         </nav>
         <div class="user-section">
-        <i class="fa fa-user" aria-hidden="true"></i>
+        <i class="fa fa-user" aria-hidden="true" onClick={handleprofile}></i>
             <span>username</span>
-            <i class="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
+    <i class="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
             
         </div>
     </header>

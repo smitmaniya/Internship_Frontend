@@ -7,6 +7,7 @@ import UserScreen from './pages/userScreen';
 import ServiceProvider from './pages/serviceProvider';
 import ServiceDetails from './components/user/serviceDetailUser';
 import OrderPlace from './components/user/orderPlace';
+import ProfileUser from './components/user/profileUser';
 function App() {
   return (
     <Router><Routes>
@@ -18,6 +19,8 @@ function App() {
       <Route path="/driver" element={<DriverScreen />}></Route>
       <Route path="/serviceDetailUser" element={<ServiceDetails />}></Route>
       <Route path="/orderPlace" element={<OrderPlace />}></Route>
+      <Route path="/profileUser" element={<ProfileUser />}></Route>
+
 
 
     </Routes></Router>

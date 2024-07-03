@@ -15,6 +15,18 @@ export default function ServiceProfileInfo() {
         }
     };
 
+    const [licenseImage, setLicenseImage] = useState(null);
+    const handleLicenseImageChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setLicenseImage(e.target.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    };
+
+
 
     return (
         <div className='center-profile-driver'>
@@ -39,8 +51,22 @@ export default function ServiceProfileInfo() {
                     <input type="text" id="Contact" name="Contact" placeholder="+1 5199919698" required />
                 </div>
                 <div className="form-container">
-                   
+                <label htmlFor="Description">Description</label>
+                <input type="text" id="Description" name="Description" placeholder="About your company" required />
+                <label htmlFor="license-upload">Business License</label>
+                    <input type="file" id="license-upload" accept="image/*" onChange={handleLicenseImageChange} style={{ display: 'block', marginBottom: '10px' }} />
+                    {licenseImage && (
+                        <>
+                        <div>
+                            <img src={licenseImage} alt="Driving License Preview" style={{ width: '95%', height: 'auto' }} />
+                        </div>
+                        <br/>
+                        </>
+                        )}
+                    
+              
                 </div>
+            <button style={{backgroundColor:"#020066"}}>Update Profile and Add Service</button>
             </div>
         </div>
     );

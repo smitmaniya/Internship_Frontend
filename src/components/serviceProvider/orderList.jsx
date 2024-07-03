@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import ServiceViewImage from "D:/internship-project/src/assets/service.png";
 
 export default function NewOrderList({ users }) {
-    const services = [
-        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "Completed", count: 12, weight: "12 lb" },
-        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "Completed", count: 12, weight: "12 lb" },
-        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "Completed", count: 12, weight: "12 lb" },
-        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "Completed", count: 12, weight: "12 lb" }
+    const initialServices = [
+        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "pending", count: 12, weight: "12 lb" },
+        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "pending", count: 12, weight: "12 lb" },
+        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "pending", count: 12, weight: "12 lb" },
+        { service: "Cloth Washing", date: "04 Sep 2019", price: "$120", status: "pending", count: 12, weight: "12 lb" }
     ];
+
     const [selectedUser, setSelectedUser] = useState(null);
+    const [services, setServices] = useState(initialServices);
 
     const openDialog = (user) => {
         setSelectedUser(user);
@@ -27,14 +29,28 @@ export default function NewOrderList({ users }) {
         }
     };
 
+    const handleStatusClick = (index) => {
+        const updatedServices = services.map((service, i) => {
+            if (i === index) {
+                if (service.status === 'pending') {
+                    return { ...service, status: 'active' };
+                } else if (service.status === 'active') {
+                    return { ...service, status: 'completed' };
+                }
+            }
+            return service;
+        });
+        setServices(updatedServices);
+    };
+
     const getStatusClass = (status) => {
         switch (status.toLowerCase()) {
             case 'completed':
-                return 'status-completed';
+                return 'status3-completed';
             case 'active':
-                return 'status-active';
+                return 'status3-active';
             case 'pending':
-                return 'status-pending';
+                return 'status3-pending';
             default:
                 return '';
         }
@@ -61,59 +77,60 @@ export default function NewOrderList({ users }) {
                             <span className="user-joined">{user.time}</span>
                             <span className="user-status">{user.amount}</span>
                             <span className="user-id">{user.address}</span>
-                            <span className={`status ${getStatusClass(user.status)}`}>{user.status}</span>
+                            <span className={`status3 ${getStatusClass(user.status)}`}>{user.status}</span>
                         </li>
                     </div>
                 ))}
             </ul>
             {selectedUser && (
                 <dialog id="user-dialog" className="user-dialog">
-                    {/* <h2>User Information</h2>
-                    <p><strong>Order Number:</strong> {selectedUser.id}</p>
-                    <p><strong>Name:</strong> {selectedUser.name}</p>
-                    <p><strong>Contact Number:</strong> {selectedUser.contact}</p>
-                    <p><strong>Ordered Date:</strong> {selectedUser.orderDate}</p>
-                    <p><strong>Amount:</strong> {selectedUser.price}</p>
-                    <button onClick={closeDialog}>Close</button> */}
-              <div className="receipt">
-      <div className="header">
-        <h1>Services Details</h1>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Service</th>
-            <th>Date</th>
-            <th>Price</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services.map((service, index) => (
-            <tr key={index}>
-              <td className="service-cell">
-                <img src={ServiceViewImage} alt="Service" className="service-image" />
-                <div className="service-details">
-                  {service.service}<br />
-                  Count: {service.count}<br />
-                  Weight: {service.weight}
-                </div>
-              </td>
-              <td>{service.date}</td>
-              <td>{service.price}</td>
-              <td><span className="status-completed">{service.status}</span></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="summary">
-        <p>Sub Total: <span>$359.96</span></p>
-        <p>Shipping Charges: <span>$35.99</span></p>
-        <p>Estimated Tax: <span>$45.99</span></p>
-        <h2>Total (CAD): <span>$415.94</span></h2>
-      </div>
-       <button onClick={closeDialog}>Close</button>
-    </div>
+                    <div className="receipt23">
+                        <div className="dialog-header21">
+                            <h1>Services Details</h1>
+                            <span className="close-icon21" onClick={closeDialog}>&times;</span>
+                        </div>
+                        <br />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {services.map((service, index) => (
+                                    <tr key={index}>
+                                        <td className="service-cell">
+                                            <img src={ServiceViewImage} alt="Service" className="service-image" />
+                                            <div className="service-details">
+                                                {service.service}<br />
+                                                Count: {service.count}<br />
+                                                Weight: {service.weight}
+                                            </div>
+                                        </td>
+                                        <td>{service.date}</td>
+                                        <td>{service.price}</td>
+                                        <td>
+                                            <span
+                                                className={`status3 ${getStatusClass(service.status)}`}
+                                                onClick={() => handleStatusClick(index)}
+                                            >
+                                                {service.status}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="summary">
+                            <p>Sub Total: <span>$359.96</span></p>
+                            <p>Shipping Charges: <span>$35.99</span></p>
+                            <p>Estimated Tax: <span>$45.99</span></p>
+                            <h2>Total (CAD): <span>$415.94</span></h2>
+                        </div>
+                    </div>
                 </dialog>
             )}
         </div>

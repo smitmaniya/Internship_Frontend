@@ -104,10 +104,10 @@
 .user-dialog {
     position: fixed;
     top: 50%;
+    border: none;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    border: 1px solid #CCC;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background: white;
@@ -119,19 +119,24 @@
 }
 
 
-.status-Completed {
+.status3-completed {
     color: green;
+    font-weight: bold;
 }
 
-.status-active {
-    color: red;
-}
-
-.status-pending {
+.status3-active {
     color: orange;
+    font-weight: bold;
 
 }
-.receipt {
+
+.status3-pending {
+    color: red;
+    font-weight: bold;
+
+
+}
+.receipt23 {
     background-color: #fff;
     padding: 20px;
     width: 800px; /* Adjusted width */
@@ -198,4 +203,18 @@ table {
 
 .summary p, .summary h2 {
   margin: 5px 0;
+}
+
+.dialog-header21 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-icon21 {
+  cursor: pointer;
+  font-size: 34px;
+  line-height: 34px;
+  color: #333;
+  align-items: center;
 }
