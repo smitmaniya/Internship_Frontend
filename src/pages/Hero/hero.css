@@ -1,0 +1,66 @@
+#hero {
+  background: linear-gradient(rgba(2, 0, 102, 0.4), rgba(2, 0, 102, 0.4)),
+    url("D:\internship-project\src\assets\Background.png");
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  /* margin: 0% 5%; */
+  /* border-radius: 50px; */
+  display: flex;
+  align-items: center;
+}
+
+#hero-containt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0% 10%;
+}
+
+#hero_title {
+  font-family: "Gilroy";
+  font-size: 70px;
+  color: white;
+  width: 80%;
+  /* line-height: 94; */
+}
+#hero-top {
+  padding-bottom: 100px;
+  border-bottom: 1px solid white;
+}
+
+.buttons {
+  display: flex;
+  width:50%;
+  justify-content: start;
+  gap: 30px;
+}
+#hero_button {
+  color: black;
+  text-align: center;
+  background-color: white;
+  padding: 21px 98px;
+  border-radius: 10px;
+  border: none;
+}
+
+#hero-login-button {
+  color: white;
+  text-align: center;
+  background-color: #fdaf3b;
+  padding: 21px 98px;
+  border-radius: 10px;
+  border: none;
+}
+#hero-bottom {
+  align-self: self-end;
+  /* margin-bottom: 8%; */
+}
+#hero_tagline {
+  font-family: "Gilroy";
+  font-weight: 200;
+  font-size: 18px;
+  color: white;
+  width: 200px;
+  text-align: right;
+}

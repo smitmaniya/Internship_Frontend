@@ -1,0 +1,94 @@
+.wwd {
+  background-color: #01003d;
+  width: 100vw/2;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 0;
+  padding: 5% 7%;
+}
+#wwd_icon_1 {
+  background-image: url("D:\internship-project\src\assets\Background.png");
+}
+
+#wwd_icon_2 {
+  background-image: url("D:\internship-project\src\assets\Background.png");
+  width: 62px;
+  height: 52px;
+  background-size: cover;
+  background-position: center;
+}
+
+#wwd_icon_3 {
+  background-image: url("D:\internship-project\src\assets\Background.png");
+}
+
+#wwd_icon_4 {
+  background-image: url("D:\internship-project\src\assets\Background.png");
+  width: 70px;
+  height: 65px;
+  background-size: cover;
+  background-position: center;
+}
+#wwd_icon_1,
+#wwd_icon_3 {
+  width: 62px;
+  height: 65px;
+  background-size: cover;
+  background-position: center;
+}
+
+#wwd_left {
+  color: white;
+  width: 30%;
+}
+
+#wwdbutton {
+  text-align: center;
+  width: 30%;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  padding: 11px 25px;
+  font-size: 15px;
+}
+
+#wwdtitle {
+  font-size: 25px;
+  width: 60%;
+}
+
+#option_cont {
+  color: white;
+  width: 60%;
+  padding-left: 15px;
+  border-left: 1px solid white;
+}
+
+#option_title {
+  margin: 0;
+  font-size: 25px;
+}
+#wwd_right {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 75%;
+}
+
+#right_top,
+#right_bottom {
+  display: flex;
+  gap: 80px;
+}
+#wwd_option {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 22px;
+  width: 50%px;
+}
+
+#option_description {
+  color: #7c819d;
+  font-size: 16px;
+}

@@ -1,0 +1,75 @@
+#a_img {
+  background-image: url("D:\internship-project\src\assets\Background.png");
+  width: 100vw/2;
+  height: 500px;
+  background-size: cover;
+  background-position: top;
+}
+
+#a_containt {
+  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  background-color: #01003d;
+  color: white;
+  height: 450px;
+  padding-top: 55px;
+}
+
+#a_title {
+  text-align: center;
+  font-size: 36px;
+  margin: 0;
+}
+
+#num {
+  font-size: 50px;
+  margin: 0;
+}
+
+#text {
+  font-size: 13px;
+}
+#a_tab,
+#a_tab_1,
+#a_tab_2,
+#a_tab_3 {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10.5px;
+  border: 1px solid white;
+  padding: 35px 51px;
+}
+
+#a_option {
+  position: relative;
+  display: flex;
+  gap: 55px;
+}
+
+#a_tab {
+  position: absolute;
+  left: 98px;
+  top: 88px;
+}
+
+#a_tab_1 {
+  position: absolute;
+  left: 417px;
+  top: 142px;
+}
+#a_tab_2 {
+  position: absolute;
+  left: 756px;
+  top: 91px;
+}
+#a_tab_3 {
+  position: absolute;
+  left: 1077px;
+  top: 151px;
+}

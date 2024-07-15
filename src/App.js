@@ -8,12 +8,16 @@ import ServiceProvider from './pages/serviceProvider';
 import ServiceDetails from './components/user/serviceDetailUser';
 import OrderPlace from './components/user/orderPlace';
 import ProfileUser from './components/user/profileUser';
+import LandingPage from './pages/landingPage';
+import ForgotPassword from './pages/forgot-password';
 function App() {
   return (
     <Router><Routes>
-      <Route path="/" element={<Login />}></Route>
+      <Route path="/" element={<LandingPage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+
       <Route path="/serviceProvider" element={<ServiceProvider />}></Route>
       <Route path="/userScreen" element={<UserScreen />}></Route>
       <Route path="/driver" element={<DriverScreen />}></Route>
@@ -21,6 +25,7 @@ function App() {
       <Route path="/orderPlace" element={<OrderPlace />}></Route>
       <Route path="/profileUser" element={<ProfileUser />}></Route>
 
+      <Route path="/landingPage" element={<LandingPage />}></Route>
 
 
     </Routes></Router>

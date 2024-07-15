@@ -7,10 +7,10 @@ import "../css/login.css"; // Import the CSS file
 export default function SignUp() {
     const [name, setName] = useState('');
     const [rolenumber, setRolennumber] = useState('');
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [selectedRole, setSelectedRole] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
     const options = ['Service Provider', 'User', 'Driver'];
 
@@ -51,7 +51,9 @@ export default function SignUp() {
             });
 
             if (response.ok) {
-                console.log("Registered successfully:", userData);
+                const data = await response.json();
+                console.log("Registered successfully:", data);
+                setMessage('Registered successfully!');
                 if (selectedRole === 'Service Provider') {
                     navigate('/serviceProvider');
                 } else if (selectedRole === 'User') {
@@ -60,10 +62,13 @@ export default function SignUp() {
                     navigate('/driver');
                 }
             } else {
-                console.error("Failed to register:", response.statusText);
+                const errorData = await response.json();
+                console.error("Failed to register:", errorData.message);
+                setMessage(`Failed to register: ${errorData.message}`);
             }
         } catch (error) {
             console.error("Error:", error);
+            setMessage('An error occurred. Please try again.');
         }
     };
 
@@ -74,8 +79,8 @@ export default function SignUp() {
                     <div className="logo">
                         <img src={logo} alt="Logo"/>
                     </div>
-                    <h1>Login</h1>
-                    <p>Welcome to Sparkle Drop login to continue</p>
+                    <h1>Sign Up</h1>
+                    <p>Welcome to Sparkle Drop, sign up to continue</p>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="name">Name</label>
                         <input type="name" id="name" name="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -86,7 +91,8 @@ export default function SignUp() {
                         <label htmlFor="role">Role</label>
                         <Select name="role" id="role" value={selectedRole} options={options} onChange={handleRoleChange} />
                         <button type="submit">Sign Up</button>
-                        <p className="signup">Already Registered? <a href="/">Login</a></p>
+                        {message && <p className="message">{message}</p>}
+                        <p className="signup">Already Registered? <a href="#/login">Login</a></p>
                     </form>
                 </div>
             </div>

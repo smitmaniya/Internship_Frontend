@@ -19,15 +19,16 @@ export default function UserHeader(){
             <img src={logo} alt="Logo"/>
         </div>
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/">Services</a>
-            <a href="/">Account</a>
+            <a href="/#/userScreen">Home</a>
+            <a href="/#/profileUser">Profile</a>
+            <a href="/">Settings</a>
+
             <a href="/">About Us</a>
             <a href="/">FAQs</a>
         </nav>
         <div class="user-section">
         <i class="fa fa-user" aria-hidden="true" onClick={handleprofile}></i>
-            <span>username</span>
+            <span>usernme</span>
     <i class="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
             
         </div>

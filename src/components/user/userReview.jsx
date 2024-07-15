@@ -72,13 +72,7 @@ export default function CustomerReviews() {
                     </div>
                 ))}
             </div>
-            {/* <div className="rating-summary">
-                <h1>3.4</h1>
-                <div className="summary-rating">
-                    {'⭐'.repeat(3)}
-                    <span>1,360 reviews</span>
-                </div>
-            </div> */}
+
         </div>
     );
 }
