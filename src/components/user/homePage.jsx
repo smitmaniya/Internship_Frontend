@@ -7,17 +7,18 @@ import TitleBox from './titleBox';
 import UserHeader from './userHeader';
 
 
-export default function HomePage() {
+export default function HomePage({userId}) {
+
     return (
         <>
-        <UserHeader/>
+        <UserHeader id={userId}/>
         <div className='homepage'>
+
           <TitleBox/>
           <br/>
           <br/>
-          <h2> Exclusive Deal </h2>
-          <ExclusiveDeals discount={true}/>
-          <h2> Popular Service Provider </h2>
+      
+          <h2> Service Provider </h2>
           <ExclusiveDeals discount={false}/>
           </div>
         <Footer/>

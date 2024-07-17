@@ -1,12 +1,12 @@
 import "D:/internship-project/src/css/user/userHeader.css";
 import logo from "D:/internship-project/src/assets/logoapp.png";
 import { useNavigate } from "react-router-dom";
-export default function UserHeader(){
+export default function UserHeader({id}){
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/orderPlace`);
+        navigate(`/orderPlace/${id}`);
     };
     const handleprofile = (event) => {
         event.preventDefault();

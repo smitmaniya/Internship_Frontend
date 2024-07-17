@@ -4,8 +4,11 @@ import ServiceViewImage from "D:/internship-project/src/assets/service.png";
 import "D:/internship-project/src/css/user/orderPlace.css";
 import "D:/internship-project/src/css/user/editAddress.css";
 import "D:/internship-project/src/css/user/paymetCard.css"; // Assuming you put the payment card styles in this file
+import { useParams } from 'react-router-dom';
 
 export default function OrderPlace() {
+    const { id } = useParams();
+
     const [dialogbox, setDialogBox] = useState(false);
     const [paymentDialog, setPaymentDialog] = useState(false);
     const [addresses, setAddresses] = useState([

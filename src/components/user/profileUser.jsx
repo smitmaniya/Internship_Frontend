@@ -47,6 +47,7 @@ export default function ProfileUser() {
             });
 
             if (response.ok) {
+                console.log(response)
                 setMessage('Profile updated successfully!');
             } else {
                 const errorData = await response.json();

@@ -10,9 +10,9 @@ export default function ExclusiveDeals({ discount }) {
     useEffect(() => {
         const fetchDeals = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/users/all-service-providers');
+                const response = await fetch('http://localhost:5000/api/location/find-service-providers/6696ecfb6452a12d496ef65e');
                 const data = await response.json();
-                setDeals(data);
+                setDeals(data.data);  // Note: data.data instead of just data
             } catch (error) {
                 console.error("Error fetching deals:", error);
             }
@@ -21,20 +21,23 @@ export default function ExclusiveDeals({ discount }) {
         fetchDeals();
     }, []);
 
-    const handleSubmit = (event, id) => {
+    const handleSubmit = (event, serviceProviderId) => {
         event.preventDefault();
-        navigate(`/serviceDetailUser`);
+        navigate(`/serviceDetailUser/${serviceProviderId}`);
+
+        // navigate(`/serviceDetailUser/${serviceProviderId}`);
     };
 
     return (
         <div className="scroll-container">
             {deals.map(deal => (
-                <div className="card" key={deal._id} onClick={(event) => handleSubmit(event, deal._id)}>
-                    {discount === true && <div className="discount">{deal.discount}</div>}
+                <div className="card" key={deal._id} onClick={(event) => handleSubmit(event,  deal._id)}>
+                    {discount && <div className="discount">{deal.discount}</div>}
                     <img src={ServiceImage} alt={`Service ${deal._id}`} />
                     <div className="text">
                         <h2>{deal.company_name}</h2>
                         <p>{deal.email}</p>
+                        <p>{deal.description}</p>
                     </div>
                 </div>
             ))}

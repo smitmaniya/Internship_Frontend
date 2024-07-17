@@ -19,10 +19,10 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="/serviceProvider" element={<ServiceProvider />}></Route>
-      <Route path="/userScreen" element={<UserScreen />}></Route>
+      <Route path="/userScreen/:id" element={<UserScreen />}></Route>
       <Route path="/driver" element={<DriverScreen />}></Route>
-      <Route path="/serviceDetailUser" element={<ServiceDetails />}></Route>
-      <Route path="/orderPlace" element={<OrderPlace />}></Route>
+      <Route path="/serviceDetailUser/:serviceProviderId" element={<ServiceDetails />} /> {/* Updated Route */}
+      <Route path="/orderPlace/:id" element={<OrderPlace />}></Route>
       <Route path="/profileUser" element={<ProfileUser />}></Route>
 
       <Route path="/landingPage" element={<LandingPage />}></Route>

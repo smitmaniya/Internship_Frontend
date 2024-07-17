@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import "D:/internship-project/src/css/driver/profile.css";
 import D1 from "D:/internship-project/src/assets/d1.png";
 
+// Adjust the path as necessary
+
 export default function ServiceProfileInfo() {
     const [profilePic, setProfilePic] = useState(D1);
     const [companyName, setCompanyName] = useState('');
     const [address, setAddress] = useState('');
+    const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
@@ -38,19 +41,20 @@ export default function ServiceProfileInfo() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = {
-            companyName,
-            country,
+            company_name: companyName,
             address,
             city,
             province,
             postalCode,
-            phoneNumber: contact,
-            licenceImg: licenseImage,
-            description
+            cnumber: contact,
+            description,
+            email,
+            service_name: ["Service1", "Service2"],
+            price: 5
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/service-providers/CreateServiceProviderprofile', {
+            const response = await fetch('http://localhost:5000/api/service-providers/profile-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +77,7 @@ export default function ServiceProfileInfo() {
 
     return (
         <div className='center-profile-driver'>
-            <div className="">
+            <div>
                 <input type="file" id="profile-pic-upload" style={{ display: 'none' }} onChange={handleImageChange} />
                 <img src={profilePic} alt="Profile" className="image-preview20" onClick={() => document.getElementById('profile-pic-upload').click()} />
             </div>
@@ -91,11 +95,12 @@ export default function ServiceProfileInfo() {
                     <input type="text" id="Country" name="Country" placeholder="Canada" value={country} onChange={(e) => setCountry(e.target.value)} required />
                     <label htmlFor="Postal">Postal Code</label>
                     <input type="text" id="Postal" name="Postal" placeholder="N9J 3R8" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
-                   
+                    <label htmlFor="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="smit@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="form-container">
-                <label htmlFor="Contact">Contact Number</label>
-                <input type="text" id="Contact" name="Contact" placeholder="+1 5199919698" value={contact} onChange={(e) => setContact(e.target.value)} required />
+                    <label htmlFor="Contact">Contact Number</label>
+                    <input type="number" id="Contact" name="Contact" placeholder="5199919698" value={contact} onChange={(e) => setContact(e.target.value)} required />
                     <label htmlFor="Description">Description</label>
                     <input type="text" id="Description" name="Description" placeholder="About your company" value={description} onChange={(e) => setDescription(e.target.value)} required />
                     <label htmlFor="license-upload">Business License</label>

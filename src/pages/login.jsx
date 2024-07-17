@@ -63,12 +63,14 @@ export default function Login() {
                 const data = await response.json();
                 console.log("Logged in successfully:", data);
                 setMessage('Logged in successfully!');
+                const { id } = data;
                 // Handle successful login, e.g., store user info, navigate to a different page, etc.
                 // navigate to the appropriate page based on the role
                 if (selectedRole === 'Service Provider') {
                     navigate('/serviceProvider');
                 } else if (selectedRole === 'User') {
-                    navigate('/userScreen');
+                    navigate(`/userScreen/${id}`); 
+// Use backticks for string interpolation
                 } else if (selectedRole === 'Driver') {
                     navigate('/driver');
                 }
@@ -91,7 +93,7 @@ export default function Login() {
                         <img src={logo} alt="Logo" />
                     </div>
                     <h1>Login</h1>
-                    <p>Welcome to Sparkle Drop login to continue</p>
+                    <p>Welcome to Sparkle Drop. Login to continue.</p>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Email</label>
                         <input
@@ -126,7 +128,7 @@ export default function Login() {
                         <br /><br /><br />
                         <button type="submit">Login</button>
                         {message && <p className="message">{message}</p>}
-                        <p className="signup">New to Sparkle Drop? <a href="/#/userScreen">Sign up</a></p>
+                        <p className="signup">New to Sparkle Drop? <a href="/#/signUp">Sign up</a></p>
                     </form>
                 </div>
             </div>
