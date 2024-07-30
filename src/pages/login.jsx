@@ -64,20 +64,22 @@ export default function Login() {
                 console.log("Logged in successfully:", data);
                 setMessage('Logged in successfully!');
                 const { id } = data;
-                // Handle successful login, e.g., store user info, navigate to a different page, etc.
-                // navigate to the appropriate page based on the role
+
+                // Store user id in local storage
+                localStorage.setItem('userId', id);
+
+                // Navigate to the appropriate page based on the role
                 if (selectedRole === 'Service Provider') {
                     navigate('/serviceProvider');
                 } else if (selectedRole === 'User') {
                     navigate(`/userScreen/${id}`); 
-// Use backticks for string interpolation
                 } else if (selectedRole === 'Driver') {
                     navigate('/driver');
                 }
             } else {
                 const errorData = await response.json();
                 console.error("Failed to log in:", errorData.message);
-                setMessage(`Failed to log in: ${errorData.message}`);
+                setMessage(`Failed to log in: Please Provide Correct Input`);
             }
         } catch (error) {
             console.error("Error:", error);

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserHeader from './userHeader';
 import ServiceViewImage from "D:/internship-project/src/assets/service.png";
 import "D:/internship-project/src/css/user/orderPlace.css";
 import "D:/internship-project/src/css/user/editAddress.css";
 import "D:/internship-project/src/css/user/paymetCard.css"; // Assuming you put the payment card styles in this file
-import { useParams } from 'react-router-dom';
 
 export default function OrderPlace() {
-    const { id } = useParams();
+    const userId = localStorage.getItem('userId'); // Retrieve the user ID from local storage
 
+    const [cartItems, setCartItems] = useState([]);
     const [dialogbox, setDialogBox] = useState(false);
     const [paymentDialog, setPaymentDialog] = useState(false);
     const [addresses, setAddresses] = useState([
@@ -19,9 +19,50 @@ export default function OrderPlace() {
         { id: 5, line1: '300, Ouellette St', line2: 'Windsor, Ontario N4F 1A7' }
     ]);
     const [searchInput, setSearchInput] = useState('');
+    const [total, setTotal] = useState(0);
+
     const [selectedDeliveryOption, setSelectedDeliveryOption] = useState(null);
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
     const [selectedAddress, setSelectedAddress] = useState(null);
+
+    const [creditCardDetails, setCreditCardDetails] = useState({
+        cardNumber: '',
+        expDate: '',
+        securityCode: '',
+        country: 'Canada',
+        zipCode: '',
+        nickname: ''
+    });
+
+    const [debitCardDetails, setDebitCardDetails] = useState({
+        cardNumber: '',
+        expDate: '',
+        securityCode: '',
+        country: 'Canada',
+        zipCode: '',
+        nickname: ''
+    });
+
+    const [isCreditCardAdded, setIsCreditCardAdded] = useState(false);
+    const [isDebitCardAdded, setIsDebitCardAdded] = useState(false);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/cart/getiteam/?userId=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && Array.isArray(data.cartItems)) {
+                    setCartItems(data.cartItems);
+                    setTotal(data.total);
+                } else {
+                    console.error('Expected cartItems to be an array but got:', data);
+                    setCartItems([]);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching cart items:', error);
+                setCartItems([]);
+            });
+    }, [userId]);
 
     const editAddress = () => {
         setDialogBox(true);
@@ -61,9 +102,39 @@ export default function OrderPlace() {
         closeDialog();
     };
 
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        if (selectedPaymentOption === 'credit-card') {
+            setCreditCardDetails((prevDetails) => ({
+                ...prevDetails,
+                [id]: value
+            }));
+        } else if (selectedPaymentOption === 'debit-card') {
+            setDebitCardDetails((prevDetails) => ({
+                ...prevDetails,
+                [id]: value
+            }));
+        }
+    };
+
+    const handleAddCard = () => {
+        if (selectedPaymentOption === 'credit-card') {
+            setIsCreditCardAdded(true);
+        } else if (selectedPaymentOption === 'debit-card') {
+            setIsDebitCardAdded(true);
+        }
+        closePaymentDialog();
+    };
+
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const handleToggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
+
     return (
         <>
-            <UserHeader />
+            <UserHeader id={userId} />
             <div className="order-place-content">
                 <div className="bodytag">
                     <div className="container9">
@@ -83,7 +154,7 @@ export default function OrderPlace() {
                             </div>
                             <div className="section9">
                                 <h2>Delivery Options</h2>
-                                <div 
+                                <div
                                     className={`card9 ${selectedDeliveryOption === 'priority' ? 'selected' : ''}`}
                                     onClick={() => selectDeliveryOption('priority')}
                                 >
@@ -94,9 +165,8 @@ export default function OrderPlace() {
                                             <p>Same Day</p>
                                         </div>
                                     </div>
-                                
                                 </div>
-                                <div 
+                                <div
                                     className={`card9 ${selectedDeliveryOption === 'standard' ? 'selected' : ''}`}
                                     onClick={() => selectDeliveryOption('standard')}
                                 >
@@ -107,12 +177,11 @@ export default function OrderPlace() {
                                             <p>Next Day</p>
                                         </div>
                                     </div>
-                                 
                                 </div>
                             </div>
                             <div className="section9">
                                 <h2>Payment</h2>
-                                <div 
+                                <div
                                     className={`card9 ${selectedPaymentOption === 'credit-card' ? 'selected' : ''}`}
                                     onClick={() => selectPaymentOption('credit-card')}
                                 >
@@ -120,11 +189,15 @@ export default function OrderPlace() {
                                         <i className="fa fa-credit-card" id="icon9" aria-hidden="true"></i>
                                         <div>
                                             <p className="title">Credit Card</p>
-                                            <p>Credit Card Details</p>
+                                            {isCreditCardAdded ? (
+                                                <p>{creditCardDetails.cardNumber}</p>
+                                            ) : (
+                                                <p>Credit Card Details</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
-                                <div 
+                                <div
                                     className={`card9 ${selectedPaymentOption === 'debit-card' ? 'selected' : ''}`}
                                     onClick={() => selectPaymentOption('debit-card')}
                                 >
@@ -132,19 +205,11 @@ export default function OrderPlace() {
                                         <i className="fa fa-credit-card-alt" id="icon9" aria-hidden="true"></i>
                                         <div>
                                             <p className="title">Debit Card</p>
-                                            <p>Debit Card Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div 
-                                    className={`card9 ${selectedPaymentOption === 'paypal' ? 'selected' : ''}`}
-                                    onClick={() => selectPaymentOption('paypal')}
-                                >
-                                    <div className="extra">
-                                        <i className="fa fa-paypal" id="icon9" aria-hidden="true"></i>
-                                        <div>
-                                            <p className="title">PayPal</p>
-                                            <p>PayPal Details</p>
+                                            {isDebitCardAdded ? (
+                                                <p>{debitCardDetails.cardNumber}</p>
+                                            ) : (
+                                                <p>Debit Card Details</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -161,23 +226,49 @@ export default function OrderPlace() {
                                 </div>
                                 <button className="place-order-button">Place order</button>
                             </div>
-                            <br/>
+                            <br />
                             <div className="section9">
                                 <h2>Cart summary</h2>
-                                <div className="card10">
+                                <div className="card10" onClick={handleToggleDropdown}>
                                     <img src={ServiceViewImage} alt="Service" />
                                     <div>
                                         <p className="title">Total Service</p>
-                                        <p>Count</p>
+                                        <p>{cartItems.length}</p>
                                     </div>
+                                </div>
+                                <div className={`dropdown ${isDropdownOpen ? 'open' : ''}`}>
+                                    <table className="service-table">
+                                        <thead>
+                                            <tr className="service-table-header-row">
+                                                <th className="service-table-header-cell">
+                                                    Service Name
+                                                </th>
+                                                <th className="service-table-header-cell">
+                                                    Price
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {cartItems.map((service, index) => (
+                                                <tr key={index} className="service-table-row">
+                                                    <td className="service-table-cell">
+                                                        {service.service.name}
+                                                    </td>
+                                                    <td className="service-table-cell">
+                                                        {service.service.price || 'N/A'}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div className="order-total9">
                                     <p>Subtotal</p>
-                                    <p>$10.99</p>
+                                    <p>${total}</p>
                                 </div>
                                 <div className="order-total9">
                                     <p>Delivery Fees</p>
-                                    <p>$3.99</p>
+                                    <p>$6.99</p>
                                 </div>
                                 <div className="order-total9">
                                     <p>Taxes & Other Fees</p>
@@ -188,7 +279,13 @@ export default function OrderPlace() {
                                     <p>$18.96</p>
                                 </div>
                                 <div className="alish">
-                                    <p>If you're not around when the delivery person arrives, they'll leave your order at the door. By placing your order, you agree to take full responsibility for it once it's delivered.</p>
+                                    <p>
+                                        If you're not around when the delivery
+                                        person arrives, they'll leave your order
+                                        at the door. By placing your order, you
+                                        agree to take full responsibility for it
+                                        once it's delivered.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -199,28 +296,48 @@ export default function OrderPlace() {
                 <dialog id="address-dialog" className="dialog-box2" open>
                     <div className="container-address">
                         <div className="header-address">
-                            <input 
-                                type="text" 
-                                id="searchInput" 
-                                placeholder="Addresses" 
-                                value={searchInput} 
-                                onChange={filterAddresses} 
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Addresses"
+                                value={searchInput}
+                                onChange={filterAddresses}
                             />
-                            <span className="close-btn" onClick={closeDialog}>&times;</span>
+                            <span className="close-btn" onClick={closeDialog}>
+                                &times;
+                            </span>
                         </div>
                         <div className="list-address" id="addressList">
-                            {addresses.filter(address => 
-                                address.line1.toLowerCase().includes(searchInput) || 
-                                address.line2.toLowerCase().includes(searchInput)
-                            ).map(address => (
-                                <div className="list-item-address" key={address.id} onClick={() => handleAddressSelect(address)}>
-                                    <i className="fa fa-map-marker" aria-hidden="true"></i>
-                                    <div className="address-info-address">
-                                        <span>{address.line1}</span>
-                                        <span className="secondary">{address.line2}</span>
+                            {addresses
+                                .filter(
+                                    (address) =>
+                                        address.line1
+                                            .toLowerCase()
+                                            .includes(searchInput) ||
+                                        address.line2
+                                            .toLowerCase()
+                                            .includes(searchInput)
+                                )
+                                .map((address) => (
+                                    <div
+                                        className="list-item-address"
+                                        key={address.id}
+                                        onClick={() =>
+                                            handleAddressSelect(address)
+                                        }
+                                    >
+                                        <i
+                                            className="fa fa-map-marker"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <div className="address-info-address">
+                                            <span>{address.line1}</span>
+                                            <span className="secondary">
+                                                {address.line2}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
                         </div>
                     </div>
                 </dialog>
@@ -230,40 +347,95 @@ export default function OrderPlace() {
                     <div className="container-payment-card">
                         <div className="header-payment-card">
                             <h2>Add credit or debit card</h2>
-                            <span className="close-btn" onClick={closePaymentDialog}>&times;</span>
+                            <span
+                                className="close-btn"
+                                onClick={closePaymentDialog}
+                            >
+                                &times;
+                            </span>
                         </div>
                         <form>
                             <div className="form-group-payment-card">
-                                <label htmlFor="card-number">Card Number</label>
-                                <input type="text" id="card-number" placeholder="Card Number" />
+                                <label htmlFor="cardNumber">Card Number</label>
+                                <input
+                                    type="text"
+                                    id="cardNumber"
+                                    placeholder="Card Number"
+                                    value={selectedPaymentOption === 'credit-card' ? creditCardDetails.cardNumber : debitCardDetails.cardNumber}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className="form-group-payment-card two-columns">
                                 <div className="form-group-payment-card">
-                                    <label htmlFor="exp-date">Exp. Date</label>
-                                    <input type="text" id="exp-date" placeholder="MM/YY" />
+                                    <label htmlFor="expDate">Exp. Date</label>
+                                    <input
+                                        type="text"
+                                        id="expDate"
+                                        placeholder="MM/YY"
+                                        value={selectedPaymentOption === 'credit-card' ? creditCardDetails.expDate : debitCardDetails.expDate}
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
                                 <div className="form-group-payment-card">
-                                    <label htmlFor="security-code">Security Code</label>
-                                    <input type="text" id="security-code" placeholder="CVV" />
+                                    <label htmlFor="securityCode">
+                                        Security Code
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="securityCode"
+                                        placeholder="CVV"
+                                        value={selectedPaymentOption === 'credit-card' ? creditCardDetails.securityCode : debitCardDetails.securityCode}
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
                             </div>
                             <div className="form-group-payment-card">
                                 <label htmlFor="country">Country</label>
-                                <select id="country">
+                                <select
+                                    id="country"
+                                    value={selectedPaymentOption === 'credit-card' ? creditCardDetails.country : debitCardDetails.country}
+                                    onChange={handleInputChange}
+                                >
                                     <option value="Canada">Canada</option>
                                 </select>
                             </div>
                             <div className="form-group-payment-card">
-                                <label htmlFor="zip-code">Zip Code</label>
-                                <input type="text" id="zip-code" placeholder="Zip Code" />
+                                <label htmlFor="zipCode">Zip Code</label>
+                                <input
+                                    type="text"
+                                    id="zipCode"
+                                    placeholder="Zip Code"
+                                    value={selectedPaymentOption === 'credit-card' ? creditCardDetails.zipCode : debitCardDetails.zipCode}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className="form-group-payment-card">
-                                <label htmlFor="nickname">Nickname (optional)</label>
-                                <input type="text" id="nickname" placeholder="e.g. joint account or work card" />
+                                <label htmlFor="nickname">
+                                    Nickname (optional)
+                                </label>
+                                <input
+                                    type="text"
+                                    id="nickname"
+                                    placeholder="e.g. joint account or work card"
+                                    value={selectedPaymentOption === 'credit-card' ? creditCardDetails.nickname : debitCardDetails.nickname}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className="buttons-payment-card">
-                                <button type="button" className="add-card-btn">Add Card</button>
-                                <button type="button" className="cancel-btn" onClick={closePaymentDialog}>Cancel</button>
+                                <button
+                                    type="button"
+                                    className="add-card-btn"
+                                    onClick={handleAddCard}
+                                >
+                                    Add Card
+                                </button>
+                                <button
+                                    type="button"
+                                    className="cancel-btn"
+                                    onClick={closePaymentDialog}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </form>
                     </div>

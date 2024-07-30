@@ -5,7 +5,6 @@ export default function UserScreen(){
     const { id } = useParams();
     return(
         <>
-        
         <HomePage userId={id}/>
         </>
     )

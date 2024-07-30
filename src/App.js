@@ -22,7 +22,7 @@ function App() {
       <Route path="/userScreen/:id" element={<UserScreen />}></Route>
       <Route path="/driver" element={<DriverScreen />}></Route>
       <Route path="/serviceDetailUser/:serviceProviderId" element={<ServiceDetails />} /> {/* Updated Route */}
-      <Route path="/orderPlace/:id" element={<OrderPlace />}></Route>
+      <Route path="/orderPlace" element={<OrderPlace />}></Route>
       <Route path="/profileUser" element={<ProfileUser />}></Route>
 
       <Route path="/landingPage" element={<LandingPage />}></Route>

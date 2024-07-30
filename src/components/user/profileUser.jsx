@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import "D:/internship-project/src/css/driver/profile.css";
 import D1 from "D:/internship-project/src/assets/d1.png";
 import UserHeader from './userHeader';
+import Notification from './notification';
 
 export default function ProfileUser() {
+    const [notification, setNotification] = useState({ message: '', type: '', visible: false });
+
     const [profilePic, setProfilePic] = useState(D1);
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -49,17 +52,26 @@ export default function ProfileUser() {
             if (response.ok) {
                 console.log(response)
                 setMessage('Profile updated successfully!');
+                showNotification('Profile updated successfully', 'success');
+
             } else {
                 const errorData = await response.json();
                 console.error('Response error data:', errorData);
                 setMessage('Failed to update profile. Please try again.');
+                showNotification('Failed to update profile. Please try again.', 'error');
+
             }
         } catch (error) {
             console.error('Fetch error:', error);
             setMessage('An error occurred. Please try again.');
         }
     };
-
+    const showNotification = (message, type) => {
+        setNotification({ message, type, visible: true });
+        setTimeout(() => {
+            setNotification({ message: '', type: '', visible: false });
+        }, 1000);
+    };
     return (
         <div style={{backgroundColor:"#EEF9FF"}}>
             <UserHeader/>
@@ -88,7 +100,8 @@ export default function ProfileUser() {
                     </div>
                     <button style={{backgroundColor:"#020066"}} type="submit">Update Profile</button>
                 </form>
-                {message && <p>{message}</p>}
+                <Notification message={notification.message} type={notification.type} visible={notification.visible} />
+
             </div>
         </div>
     );

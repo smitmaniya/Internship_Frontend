@@ -12,7 +12,7 @@ export default function ExclusiveDeals({ discount }) {
             try {
                 const response = await fetch('http://localhost:5000/api/location/find-service-providers/6696ecfb6452a12d496ef65e');
                 const data = await response.json();
-                setDeals(data.data);  // Note: data.data instead of just data
+                setDeals(data.data);
             } catch (error) {
                 console.error("Error fetching deals:", error);
             }

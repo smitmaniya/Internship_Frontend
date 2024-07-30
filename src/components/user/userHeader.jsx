@@ -1,37 +1,36 @@
 import "D:/internship-project/src/css/user/userHeader.css";
 import logo from "D:/internship-project/src/assets/logoapp.png";
 import { useNavigate } from "react-router-dom";
-export default function UserHeader({id}){
+
+export default function UserHeader({ id }) {
     const navigate = useNavigate();
+    const userId = localStorage.getItem('userId'); // Retrieve the user ID from local storage
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/orderPlace/${id}`);
+        navigate(`/orderPlace`);
     };
-    const handleprofile = (event) => {
+    const handleProfile = (event) => {
         event.preventDefault();
         navigate(`/profileUser`);
     };
 
     return (
-        <header class="header2">
-        <div class="logo2">
-            <img src={logo} alt="Logo"/>
-        </div>
-        <nav class="nav">
-            <a href="/#/userScreen">Home</a>
-            <a href="/#/profileUser">Profile</a>
-            <a href="/">Settings</a>
-
-            <a href="/">About Us</a>
-            <a href="/">FAQs</a>
-        </nav>
-        <div class="user-section">
-        <i class="fa fa-user" aria-hidden="true" onClick={handleprofile}></i>
-            <span>usernme</span>
-    <i class="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
-            
-        </div>
-    </header>
-    )
+        <header className="header2">
+            <div className="logo2">
+                <img src={logo} alt="Logo" />
+            </div>
+            <nav className="nav">
+                <a href={`/#/userScreen/${userId}`}>Home</a>
+                <a href="/#/profileUser">Profile</a>
+                <a href="/">About Us</a>
+                <a href="/">Logout</a>
+            </nav>
+            <div className="user-section">
+                {/* <i className="fa fa-user" aria-hidden="true" onClick={handleProfile}></i>
+                <span>username</span> */}
+                <i className="fa fa-shopping-cart" onClick={handleSubmit} aria-hidden="true"></i>
+            </div>
+        </header>
+    );
 }
