@@ -18,8 +18,8 @@ export default function ServiceDetails() {
             <div style={{ marginLeft: "20px" }}>
                 <ServiceView serviceProviderId={serviceProviderId} />
                 <ServiceInformation />
-                <br />
-                <br />
+                <br/>
+                <br/>
             </div>
             <br />
             <CustomerReviews />

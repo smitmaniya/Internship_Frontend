@@ -24,6 +24,7 @@ export default function ProfileUser() {
                 setProfilePic(e.target.result);
             };
             reader.readAsDataURL(event.target.files[0]);
+            console.log(message);
         }
     };
 
@@ -50,38 +51,42 @@ export default function ProfileUser() {
             });
 
             if (response.ok) {
-                console.log(response)
+                const responseData = await response.json();
+                const profileId = responseData._id;
+                localStorage.setItem('profileId', profileId);
+
                 setMessage('Profile updated successfully!');
                 showNotification('Profile updated successfully', 'success');
-
             } else {
                 const errorData = await response.json();
                 console.error('Response error data:', errorData);
                 setMessage('Failed to update profile. Please try again.');
                 showNotification('Failed to update profile. Please try again.', 'error');
-
             }
         } catch (error) {
             console.error('Fetch error:', error);
             setMessage('An error occurred. Please try again.');
+            showNotification('An error occurred. Please try again.', 'error');
         }
     };
+
     const showNotification = (message, type) => {
         setNotification({ message, type, visible: true });
         setTimeout(() => {
             setNotification({ message: '', type: '', visible: false });
         }, 1000);
     };
+
     return (
-        <div style={{backgroundColor:"#EEF9FF"}}>
-            <UserHeader/>
-            <br/>
+        <div style={{ backgroundColor: "#EEF9FF" }}>
+            <UserHeader />
+            <br />
             <div className='center-profile-driver'>
                 <div className="">
                     <input type="file" id="profile-pic-upload" style={{ display: 'none' }} onChange={handleImageChange} />
                     <img src={profilePic} alt="Profile" className="image-preview20" onClick={() => document.getElementById('profile-pic-upload').click()} />
                 </div>
-                <form style={{width:"40%"}} onSubmit={handleSubmit}>
+                <form style={{ width: "40%" }} onSubmit={handleSubmit}>
                     <div className="form-container">
                         <label htmlFor="Name1">Full Name</label>
                         <input type="text" id="Name1" name="Name" placeholder="John Deo" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -98,10 +103,9 @@ export default function ProfileUser() {
                         <label htmlFor="Contact">Contact Number</label>
                         <input type="text" id="Contact" name="Contact" placeholder="+1 5199919698" value={contact} onChange={(e) => setContact(e.target.value)} required />
                     </div>
-                    <button style={{backgroundColor:"#020066"}} type="submit">Update Profile</button>
+                    <button style={{ backgroundColor: "#020066" }} type="submit">Update Profile</button>
                 </form>
                 <Notification message={notification.message} type={notification.type} visible={notification.visible} />
-
             </div>
         </div>
     );

@@ -10,10 +10,7 @@ export default function UserHeader({ id }) {
         event.preventDefault();
         navigate(`/orderPlace`);
     };
-    const handleProfile = (event) => {
-        event.preventDefault();
-        navigate(`/profileUser`);
-    };
+   
 
     return (
         <header className="header2">

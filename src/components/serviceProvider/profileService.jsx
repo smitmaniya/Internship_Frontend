@@ -50,7 +50,6 @@ export default function ServiceProfileInfo() {
             description,
             email,
             service_name: ["Service1", "Service2"],
-            price: 5
         };
 
         try {

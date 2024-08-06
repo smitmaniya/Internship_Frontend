@@ -10,6 +10,7 @@ import OrderPlace from './components/user/orderPlace';
 import ProfileUser from './components/user/profileUser';
 import LandingPage from './pages/landingPage';
 import ForgotPassword from './pages/forgot-password';
+import ThankYou from './components/user/thanku';
 function App() {
   return (
     <Router><Routes>
@@ -26,6 +27,8 @@ function App() {
       <Route path="/profileUser" element={<ProfileUser />}></Route>
 
       <Route path="/landingPage" element={<LandingPage />}></Route>
+      <Route path="/thanku" element={<ThankYou/>}></Route>
+
 
 
     </Routes></Router>

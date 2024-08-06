@@ -66,7 +66,7 @@ export default function NewOrderList({ users }) {
                     <span className="user-joined-header">Time</span>
                     <span className="user-id-header">Amount</span>
                     <span className="user-id-header">Address</span>
-                    <span className="user-status-header">Status</span>
+                    {/* <span className="user-status-header">Status</span> */}
                 </li>
                 {users.map(user => (
                     <div key={user.id} onClick={() => openDialog(user)} className="user-link-style">
@@ -77,7 +77,7 @@ export default function NewOrderList({ users }) {
                             <span className="user-joined">{user.time}</span>
                             <span className="user-status">{user.amount}</span>
                             <span className="user-id">{user.address}</span>
-                            <span className={`status3 ${getStatusClass(user.status)}`}>{user.status}</span>
+                            {/* <span className={`status3 ${getStatusClass(user.status)}`}>{user.status}</span> */}
                         </li>
                     </div>
                 ))}
@@ -96,7 +96,6 @@ export default function NewOrderList({ users }) {
                                     <th>Service</th>
                                     <th>Date</th>
                                     <th>Price</th>
-                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +116,6 @@ export default function NewOrderList({ users }) {
                                                 className={`status3 ${getStatusClass(service.status)}`}
                                                 onClick={() => handleStatusClick(index)}
                                             >
-                                                {service.status}
                                             </span>
                                         </td>
                                     </tr>

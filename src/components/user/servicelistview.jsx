@@ -26,16 +26,18 @@ export default function ServiceView({ serviceProviderId }) {
                     },
                     body: JSON.stringify({
                         "serviceProviderId": serviceProviderId
+                    
                     })
                 });
                 const data = await response.json();
-                setDeals(data); // Assuming data is an array of deals
-                setQuantities(Array(data.length).fill(1)); // Initialize quantities based on fetched data length
+                console.log("Fetched data:", data); // Log the fetched data
 
-                if (data.length === 0) {
-                    setMessage("No services available.");
-                } else {
+                if (Array.isArray(data) && data.length > 0) {
+                    setDeals(data);
+                    setQuantities(Array(data.length).fill(1)); // Initialize quantities based on fetched data length
                     setMessage('');
+                } else {
+                    setMessage("No services available.");
                 }
             } catch (error) {
                 console.error("Error fetching deals:", error);
@@ -45,7 +47,6 @@ export default function ServiceView({ serviceProviderId }) {
 
         fetchDeals();
     }, [serviceProviderId]);
-    console.log(message)
 
     const handlePlusClick = (index) => {
         const newQuantities = [...quantities];
@@ -58,12 +59,14 @@ export default function ServiceView({ serviceProviderId }) {
     const closeDialog = () => {
         dialogRef.current.close();
     };
+
     const showNotification = (message, type) => {
         setNotification({ message, type, visible: true });
         setTimeout(() => {
             setNotification({ message: '', type: '', visible: false });
         }, 1000);
     };
+
     const handleAddToOrder = async () => {
         try {
             const response = await fetch('http://localhost:5000/api/cart/add', {
@@ -82,7 +85,6 @@ export default function ServiceView({ serviceProviderId }) {
                 })
             });
 
-         
             if (response.ok) {
                 showNotification('Service added to cart successfully!', 'success');
             } else {
@@ -98,6 +100,7 @@ export default function ServiceView({ serviceProviderId }) {
     return (
         <div>
             <h1 style={{ marginLeft: "20px" }}>Available Services</h1>
+            {message && <p>{message}</p>}
             <div className="service-container">
                 {deals.map((deal, index) => (
                     <div key={deal._id} className="service-card">
@@ -150,7 +153,6 @@ export default function ServiceView({ serviceProviderId }) {
                 )}
             </dialog>
             <Notification message={notification.message} type={notification.type} visible={notification.visible} />
-
         </div>
     );
 }

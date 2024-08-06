@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserHeader from './userHeader';
+import { useNavigate } from 'react-router-dom';
 import ServiceViewImage from "D:/internship-project/src/assets/service.png";
 import "D:/internship-project/src/css/user/orderPlace.css";
 import "D:/internship-project/src/css/user/editAddress.css";
@@ -7,7 +8,7 @@ import "D:/internship-project/src/css/user/paymetCard.css"; // Assuming you put 
 
 export default function OrderPlace() {
     const userId = localStorage.getItem('userId'); // Retrieve the user ID from local storage
-
+    const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [dialogbox, setDialogBox] = useState(false);
     const [paymentDialog, setPaymentDialog] = useState(false);
@@ -52,18 +53,87 @@ export default function OrderPlace() {
             .then(data => {
                 if (data && Array.isArray(data.cartItems)) {
                     setCartItems(data.cartItems);
-                    setTotal(data.total);
+                    setTotal(Number(data.total) || 0); // Ensure total is a number
                 } else {
                     console.error('Expected cartItems to be an array but got:', data);
                     setCartItems([]);
+                    setTotal(0); // Fallback value
                 }
             })
             .catch(error => {
                 console.error('Error fetching cart items:', error);
                 setCartItems([]);
+                setTotal(0); // Fallback value
             });
     }, [userId]);
 
+
+    const handleCheckout = () => {
+        // const checkoutData = {
+        //     "services": [
+        //         { "serviceId": "66a951017d4a41544d6c3071", "quantity": 1 },
+        //        { "serviceId": "66a951017d4a41544d6c3072", "quantity": 1 }
+       
+        //    ],
+        //    "userId": "666a117d674122300600acb2",
+        //    "userAddress": "123 Main St, Springfield, IL, 62701",
+        //    "deliveryOption": "priority",
+        //    "paymentDetails": {
+        //        "cardNumber": "1234567812345678",
+        //        "cvv": "123",
+        //        "expiry": "12/24",
+        //        "county": "SomeCounty",
+        //        "zip": "12345",
+        //        "nickName": "MyCard"
+        //    }
+        // }
+        const checkoutData = {
+            services: cartItems.map(item => ({
+                serviceId: item.service._id,
+                quantity: item.quantity
+            })),
+            userId: userId,
+            userAddress: selectedAddress ? `${selectedAddress.line1}, ${selectedAddress.line2}` : '',
+            deliveryOption: selectedDeliveryOption,
+            paymentDetails: selectedPaymentOption === 'credit-card' ? {
+                cardNumber: creditCardDetails.cardNumber,
+                cvv: creditCardDetails.securityCode,
+                expiry: creditCardDetails.expDate,
+                country: creditCardDetails.country,
+                zip: creditCardDetails.zipCode,
+                nickName: creditCardDetails.nickname
+            } : {
+                cardNumber: debitCardDetails.cardNumber,
+                cvv: debitCardDetails.securityCode,
+                expiry: debitCardDetails.expDate,
+                country: debitCardDetails.country,
+                zip: debitCardDetails.zipCode,
+                nickName: debitCardDetails.nickname
+            }
+        };
+
+        fetch('http://localhost:5000/api/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(checkoutData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Checkout successful:', data);
+            })
+            .catch(error => {
+                console.error('Error during checkout:', error);
+
+            });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleCheckout()
+        navigate(`/thanku`);
+    };
     const editAddress = () => {
         setDialogBox(true);
         document.querySelector('.order-place-content').classList.add('blur-background');
@@ -99,6 +169,7 @@ export default function OrderPlace() {
 
     const handleAddressSelect = (address) => {
         setSelectedAddress(address);
+        console.log(setAddresses);
         closeDialog();
     };
 
@@ -220,11 +291,18 @@ export default function OrderPlace() {
                                 <div className="card10">
                                     <img src={ServiceViewImage} alt="Service" />
                                     <div>
-                                        <p className="title">Service Provider Name</p>
-                                        <p>Address</p>
+                                        {cartItems.length > 0 ? (
+                                            <>
+                                                <p className="title">{cartItems[0].service.providerName}</p>
+                                                <p>{cartItems[0].service.providerAddress}</p>
+                                            </>
+                                        ) : (
+                                            <p>Loading...</p>
+                                        )}
+                                        {/* <p>Address</p> */}
                                     </div>
                                 </div>
-                                <button className="place-order-button">Place order</button>
+                                <button className="place-order-button" onClick={handleSubmit}>Place order</button>
                             </div>
                             <br />
                             <div className="section9">
@@ -255,7 +333,7 @@ export default function OrderPlace() {
                                                         {service.service.name}
                                                     </td>
                                                     <td className="service-table-cell">
-                                                        {service.service.price || 'N/A'}
+                                                        {service.service.price}
                                                     </td>
                                                 </tr>
                                             ))}
@@ -272,11 +350,11 @@ export default function OrderPlace() {
                                 </div>
                                 <div className="order-total9">
                                     <p>Taxes & Other Fees</p>
-                                    <p>$0.92</p>
-                                </div>
+                                    <p>${(total * 0.13).toFixed(2)}</p>
+                                    </div>
                                 <div className="order-total9 total">
                                     <p>Total</p>
-                                    <p>$18.96</p>
+                                    <p>${total*0.13 + total + 6.99}</p>
                                 </div>
                                 <div className="alish">
                                     <p>

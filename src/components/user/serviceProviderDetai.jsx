@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 export default function ExclusiveDeals({ discount }) {
     const [deals, setDeals] = useState([]);
     const navigate = useNavigate();
+    const profileId = localStorage.getItem('profileId');
 
     useEffect(() => {
         const fetchDeals = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/location/find-service-providers/6696ecfb6452a12d496ef65e');
+                const response = await fetch(`http://localhost:5000/api/location/find-service-providers/${profileId}`);
                 const data = await response.json();
                 setDeals(data.data);
             } catch (error) {
@@ -24,8 +25,6 @@ export default function ExclusiveDeals({ discount }) {
     const handleSubmit = (event, serviceProviderId) => {
         event.preventDefault();
         navigate(`/serviceDetailUser/${serviceProviderId}`);
-
-        // navigate(`/serviceDetailUser/${serviceProviderId}`);
     };
 
     return (
